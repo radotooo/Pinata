@@ -29,7 +29,7 @@ export default class Splash extends Scene {
       logo: Assets.images.logo,
     };
     const sounds = {
-      
+      mariachi: Assets.sounds.mariachi,
     };
 
     return super.preload({ images, sounds });
