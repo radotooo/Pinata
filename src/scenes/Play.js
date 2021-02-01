@@ -1,15 +1,54 @@
-import { Sprite } from 'pixi.js';
 import Scene from './Scene';
 import gsap from 'gsap';
 import Footer from '../components/Footer';
+import Music from '../components/Music';
+import Cactus from '../components/Cactus';
+import Pinata from '../components/Pinata';
+
+import { Texture } from 'pixi.js';
 
 export default class Play extends Scene {
   async onCreated() {
+    this._music = new Music();
 
     const footer = new Footer();
-    footer.x = - window.innerWidth / 2;
+    footer.x = -window.innerWidth / 2;
     footer.y = window.innerHeight / 2 - footer.height;
     this.addChild(footer);
+
+    this.background.alpha = 0;
+    this.alpha = 0;
+
+    const canctus1Texture = Texture.from('cactus1');
+    const cactus2Texture = Texture.from('cactus2');
+
+    const cactus1 = new Cactus(-800, 380, canctus1Texture);
+    const cactus2 = new Cactus(500, 380, cactus2Texture);
+    const pinata = new Pinata();
+
+    this.addChild(cactus1);
+    this.addChild(cactus2);
+    this.addChild(pinata);
+
+    this._music.once(Music.events.START, () => {
+      pinata.dance();
+      cactus1.dance();
+      cactus2.dance();
+      this._music.on(Music.events.BEAT, () => pinata.createParticle());
+    });
+
+    this._music.once(Music.events.INTRO, () => {
+      this.alpha = 1;
+      this.background.alpha = 1;
+      gsap.to(this.background.scale, {
+        x: 0.8,
+        y: 0.8,
+        duration: 10,
+        yoyo: true,
+        repeat: -1,
+        ease: 'linear.none',
+      });
+    });
   }
 
   /**
@@ -19,7 +58,7 @@ export default class Play extends Scene {
    * @param  {Number} width  Window width
    * @param  {Number} height Window height
    */
-  onResize(width, height) { // eslint-disable-line no-unused-vars
-
+  onResize(width, height) {
+    // eslint-disable-line no-unused-vars
   }
 }
