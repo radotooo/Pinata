@@ -7,14 +7,16 @@ import gsap from 'gsap';
  * @param {Number} x Sprite X coordinate
  * @param {Number} y Sprite Y coortinate
  * @param {String} texture Sprite texture
- *
+ * @param {String} name Sprite name
+ 
  */
 
 export default class Cactus extends Sprite {
-  constructor(x, y, texture) {
+  constructor(x, y, texture, name) {
     super(texture);
 
-    this.name = 'cactus';
+    this.name = name;
+    this.anchor.set(0.5, 1);
 
     this.x = x;
     this.y = y;
@@ -24,7 +26,6 @@ export default class Cactus extends Sprite {
    * @summary Animate sprite movement
    */
   dance() {
-    this.anchor.set(0.5, 1);
     gsap.to(this, {
       rotation: 1,
       repeat: -1,

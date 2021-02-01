@@ -22,13 +22,11 @@ export default class Play extends Scene {
     const canctus1Texture = Texture.from('cactus1');
     const cactus2Texture = Texture.from('cactus2');
 
-    const cactus1 = new Cactus(-800, 380, canctus1Texture);
-    const cactus2 = new Cactus(500, 380, cactus2Texture);
     const pinata = new Pinata();
+    const cactus1 = new Cactus(-800, 380, canctus1Texture, 'cactus-1');
+    const cactus2 = new Cactus(500, 380, cactus2Texture, 'cactus-2');
 
-    this.addChild(cactus1);
-    this.addChild(cactus2);
-    this.addChild(pinata);
+    this.addChild(pinata, cactus1, cactus2);
 
     this._music.once(Music.events.START, () => {
       pinata.dance();
