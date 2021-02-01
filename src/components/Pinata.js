@@ -2,7 +2,7 @@ import { Container, Sprite } from 'pixi.js';
 import gsap from 'gsap';
 
 /**
- * @summary Create an instance of PIXI.Sprite
+ * @summary Create an instance of PIXI.Container
  * @extends {PIXI.Container}
  *
  */
