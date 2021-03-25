@@ -23,6 +23,8 @@ export default class Play extends Scene {
     const cactus2Texture = Texture.from('cactus2');
 
     const pinata = new Pinata();
+    pinata.y = -400;
+
     const cactus1 = new Cactus(-800, 380, canctus1Texture, 'cactus-1');
     const cactus2 = new Cactus(500, 380, cactus2Texture, 'cactus-2');
 

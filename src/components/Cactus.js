@@ -2,28 +2,29 @@ import { Sprite } from 'pixi.js';
 import gsap from 'gsap';
 
 /**
- * @summary Create an instance of PIXI.Sprite
- * @extends {PIXI.SPrite}
- * @param {Number} x Sprite X coordinate
- * @param {Number} y Sprite Y coortinate
- * @param {String} texture Sprite texture
- * @param {String} name Sprite name
- 
+ * Initializes a new instance of Cactus
+ * @class
+ * @extends {PIXI.Sprite}
  */
-
 export default class Cactus extends Sprite {
+  /**
+   * @param {Number} x Sprite X coordinate
+   * @param {Number} y Sprite Y coortinate
+   * @param {String} texture Sprite texture
+   * @param {String} name Sprite name
+   */
   constructor(x, y, texture, name) {
     super(texture);
-
-    this.name = name;
-    this.anchor.set(0.5, 1);
-
     this.x = x;
     this.y = y;
+    this.name = name;
+
+    this.anchor.set(0.5, 1);
   }
 
   /**
-   * @summary Animate sprite movement
+   *  Animate cactus movement
+   * @public
    */
   dance() {
     gsap.to(this, {
